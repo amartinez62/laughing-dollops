@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Apps</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="src/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="weatherbox">
+        <div class="search-temps">
+            <form id="search-form">
+                <div class="row">
+            <div class="col-3">
+                <input
+                class="form-control  search-city"
+                type="text"
+                placeholder="Search your City"
+                autocomplete="off"
+                autofocus="on"
+                id="search-input-text"
+            />
+            </div>
+            <div class="col-2">
+                <input type="submit" value="Search" class="form-control btn btn-primary shadow-sm w-100">
+                </div>
+                <div class="col-3">
+                 <button class="btn btn-success w-100 current-loc">Current Location</button>
+                </div>
+                </div>
+            </div>
+            </form>
+<br>
+        
+
+    <h2 class="text-center"></h2>
+    <div class="main-weather">
+        <div class="row">
+            <div class="col-4 left-align">
+                <h1 class="city">Omaha</h1>
+                <ul style="list-style-type:none;">
+                    <li>
+                        <span class="date-time">Saturday, March 13, 2021 8:00am</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4 currenttemp">
+                <p>
+                    <span class="temperature">12</span>
+                    <small class="degrees">
+                        °
+                        <a id="c" class="active" href="#">C</a>
+                         | °
+                        <a id="f" href="#">F</a>
+                    </small>
+                </p>
+            </div>
+            <div class="col-4">
+                <p id="currentsky">Cloudy</p>
+                <img>
+                <ul style="list-style-type:none;">
+                    <li Humidity: >
+                        <span class="humidity"></span>%
+                    </li>
+                    <li Wind:>
+                        <span class="wind-speed"></span> km/h
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        
+<br>
+<div class="row forecast" id="todaytemps">
+            <div class="col-2 timed-forecast">
+                <h4 class="daily-forecast-time">4:00pm</h4>
+                <div class="daily-forecast-temp">
+                    <strong>32</strong>
+                    °/ 12°
+                </div>
+            </div>
+            <div class="col-2 timed-forecast">
+                <h4 class="daily-forecast-time">4:00pm</h4>
+                <div class="daily-forecast-temp">
+                    <strong>32</strong>
+                    °/ 12°
+                </div>
+            </div>
+            <div class="col-2 timed-forecast">
+                <h4 class="daily-forecast-time">5:00pm</h4>
+                <div class="daily-forecast-temp">
+                    <strong>11</strong>
+                    °/ 2°
+                </div>
+            </div>
+            <div class="col-2 timed-forecast">
+                <h4 class="daily-forecast-time">6:00pm</h4>
+                <div class="daily-forecast-temp">
+                    <strong>22</strong>
+                    °/ 8°
+                </div>
+            </div>
+            <div class="col-2 timed-forecast">
+                <h4 class="daily-forecast-time">7:00pm</h4>
+                <div class="daily-forecast-temp">
+                    <strong>8</strong>
+                    °/ 1°
+                </div>
+            </div>
+        
+        </div>
+<br>
+        <div class="templist">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Sunday 34°F</li>
+            <li class="list-group-item">Monday 42°F</li>
+            <li class="list-group-item">Tuesday 45°F</li>
+            <li class="list-group-item">Wednesday 39°F</li>
+            <li class="list-group-item">Thursday 39°F</li>
+            <li class="list-group-item">Friday 41°F</li>
+            <li class="list-group-item">Saturday 39°F</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <script type="text/javascript" src="src/index.js"> </script>
+    </body>
+</html>
+

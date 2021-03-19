@@ -1,0 +1,105 @@
+body {
+  font-family: "Dosis", sans-serif;
+}
+
+.container {
+  max-width: 700px;
+  margin: 28px auto 6px auto;
+  padding: 22px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.weatherbox {
+  border: 2px solid #5432a8;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  background-image: linear-gradient(
+    to top,
+    #dad4ec 0%,
+    #dad4ec 1%,
+    #f3e7e9 100%
+  );
+}
+
+.search-temps {
+  padding-left: 10px;
+}
+
+.main-weather {
+  text-align: center;
+}
+ul {
+  padding: 0%;
+}
+.temperature {
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1;
+  bottom: 20px;
+}
+
+.date-time {
+  font-size: 16px;
+  color: darkviolet;
+}
+
+.currenttemp small {
+  font-size: 18px;
+  color: darkviolet;
+  position: relative;
+  top: -30px;
+}
+
+#c {
+  color: darkviolet;
+}
+
+#f {
+  color: darkviolet;
+}
+
+#currentsky {
+  font-size: 32px;
+  font-weight: bold;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.humidity {
+  color: darkviolet;
+  font-size: 16px;
+  position: relative;
+}
+
+.wind-speed {
+  color: darkviolet;
+  font-size: 16px;
+  position: relative;
+}
+
+.templist {
+  padding-left: 100px;
+  padding-right: 100px;
+  border: 5px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#todaytemps {
+  margin-left: 48px;
+}
+
+.timed-forecast {
+  text-align: center;
+  margin-left: 10px;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
