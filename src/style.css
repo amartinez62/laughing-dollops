@@ -46,6 +46,11 @@ ul {
   color: darkviolet;
 }
 
+.temperature-icon {
+  top: -20px;
+  position: relative;
+}
+
 .currenttemp small {
   font-size: 18px;
   color: darkviolet;
@@ -102,4 +107,8 @@ ul {
   position: relative;
   padding: 0;
   margin: 0;
+}
+
+footer {
+  text-align: center;
 }

@@ -1,9 +1,10 @@
-let today = new Date();
-let day = today.getDate();
-let time = today.getHours() + ":" + today.getMinutes();
 
 
-  let weekDay = [
+function formatDate(timestamp) { 
+  let date = new Date(timestamp);
+  let day = date.getDay();
+
+    let weekDay = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -12,7 +13,7 @@ let time = today.getHours() + ":" + today.getMinutes();
     "Saturday",
     "Sunday"
   ];
-  let thisDay = weekDay[today.getDay()];
+  let thisDay = weekDay[date.getDay()];
   let months = [
     "January",
     "February",
@@ -27,10 +28,26 @@ let time = today.getHours() + ":" + today.getMinutes();
     "November",
     "December"
   ];
-let thisMonth = months[today.getMonth()]; 
+  let thisMonth = months[date.getMonth()]; 
   
-let dateTime = document.querySelector(".date-time");
-dateTime.innerHTML = `${thisDay} ${thisMonth} ${day} ${time}`;
+  return `${thisDay} ${thisMonth} ${day} ${formatHours(timestamp)}`;
+}
+
+
+
+function formatHours(timestamp) { 
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) { 
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  
+  return `${hours}:${minutes}`;
+}
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
@@ -42,26 +59,65 @@ function search(event) {
 
 }
 
+function displayForecast(response) { 
+  console.log(response.data);
+
+  let forecastElement = document.querySelector("#forecast-list");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) { 
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2">
+      <h3>
+        ${formatHours(forecast.dt * 1000)}
+      </h3>
+      <img
+        src="http://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png"
+      />
+      <div class="weather-forecast-temperature">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `
+    
+  }
+}
+
 function searchCity(city) { 
   let apiKey = "37c42d4714983ec5cfa2a15822f9a984";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showCurrentWeather);
-}
 
-function showCurrentTemp(response) {
-  console.log(response.data);
-  let currentTemp = document.querySelector(".temperature");
-  currentTemp.innerHTML = Math.round(response.data.main.temp);
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showCurrentWeather(response) {
-  document.querySelector("h1").innerHTML = response.data.name;
-  document.querySelector(".temperature").innerHTML = Math.round(response.data.main.temp);
-  document.querySelector("#currentsky").innerHTML = response.data.weather[0].main;
-  document.querySelector(".humidity").innerHTML = response.data.main.humidity;
-  document.querySelector(".wind-speed").innerHTML = Math.round(response.data.wind.speed);
+  let cityElement = document.querySelector("h1");
+  let tempElement = document.querySelector(".temperature");
+  let skyElement = document.querySelector("#currentsky");
+  let humidityElement = document.querySelector(".humidity");
+  let windElement = document.querySelector(".wind-speed");
+  let iconElement = document.querySelector("#icon");
+  let dateElement = document.querySelector(".date-time");
+
+  cityElement.innerHTML = response.data.name;
+  tempElement.innerHTML = Math.round(response.data.main.temp);
+  skyElement.innerHTML = response.data.weather[0].main;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
  }
 
 function findPosition(position) {

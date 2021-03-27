@@ -50,7 +50,19 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-4 currenttemp">
+            <div class="col-2">
+                <div class="temperature-icon">
+                    <img 
+                    src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+                    alt="Clear"
+                    id="icon"
+                    class="float-left"
+                    />
+
+                </div>
+
+            </div>
+            <div class="col-3 currenttemp">
                 <p>
                     <span class="temperature">12</span>
                     <small class="degrees">
@@ -61,7 +73,7 @@
                     </small>
                 </p>
             </div>
-            <div class="col-4">
+            <div class="col-2">
                 <p id="currentsky">Cloudy</p>
                 <img>
                 <ul style="list-style-type:none;">
@@ -77,58 +89,15 @@
     </div>
         
 <br>
-<div class="row forecast" id="todaytemps">
-            <div class="col-2 timed-forecast">
-                <h4 class="daily-forecast-time">4:00pm</h4>
-                <div class="daily-forecast-temp">
-                    <strong>32</strong>
-                    °/ 12°
-                </div>
-            </div>
-            <div class="col-2 timed-forecast">
-                <h4 class="daily-forecast-time">4:00pm</h4>
-                <div class="daily-forecast-temp">
-                    <strong>32</strong>
-                    °/ 12°
-                </div>
-            </div>
-            <div class="col-2 timed-forecast">
-                <h4 class="daily-forecast-time">5:00pm</h4>
-                <div class="daily-forecast-temp">
-                    <strong>11</strong>
-                    °/ 2°
-                </div>
-            </div>
-            <div class="col-2 timed-forecast">
-                <h4 class="daily-forecast-time">6:00pm</h4>
-                <div class="daily-forecast-temp">
-                    <strong>22</strong>
-                    °/ 8°
-                </div>
-            </div>
-            <div class="col-2 timed-forecast">
-                <h4 class="daily-forecast-time">7:00pm</h4>
-                <div class="daily-forecast-temp">
-                    <strong>8</strong>
-                    °/ 1°
-                </div>
-            </div>
+<div class="row forecast" id="forecast-list">
+
+
         
         </div>
 <br>
-        <div class="templist">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Sunday 34°F</li>
-            <li class="list-group-item">Monday 42°F</li>
-            <li class="list-group-item">Tuesday 45°F</li>
-            <li class="list-group-item">Wednesday 39°F</li>
-            <li class="list-group-item">Thursday 39°F</li>
-            <li class="list-group-item">Friday 41°F</li>
-            <li class="list-group-item">Saturday 39°F</li>
-        </ul>
         </div>
         </div>
-        </div>
+        <footer>Code created by <a class="active" href="https://github.com/amartinez62/crispy-goggles">Amanda Martinez</a> </footer>
         <script type="text/javascript" src="src/index.js"> </script>
     </body>
 </html>
