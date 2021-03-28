@@ -2,18 +2,18 @@
 
 function formatDate(timestamp) { 
   let date = new Date(timestamp);
-  let day = date.getDay();
+  let today = date.getDate();
 
-    let weekDay = [
+  let weekDay = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday",
-    "Sunday"
+    "Saturday"
   ];
-  let thisDay = weekDay[date.getDay()];
+
   let months = [
     "January",
     "February",
@@ -29,8 +29,9 @@ function formatDate(timestamp) {
     "December"
   ];
   let thisMonth = months[date.getMonth()]; 
+  let thisDay = weekDay[date.getDay()];
   
-  return `${thisDay} ${thisMonth} ${day} ${formatHours(timestamp)}`;
+  return `${thisDay} ${thisMonth} ${today} ${formatHours(timestamp)}`;
 }
 
 
@@ -60,7 +61,6 @@ function search(event) {
 }
 
 function displayForecast(response) { 
-  console.log(response.data);
 
   let forecastElement = document.querySelector("#forecast-list");
   forecastElement.innerHTML = null;
@@ -108,7 +108,7 @@ function showCurrentWeather(response) {
   let humidityElement = document.querySelector(".humidity");
   let windElement = document.querySelector(".wind-speed");
   let iconElement = document.querySelector("#icon");
-  let dateElement = document.querySelector(".date-time");
+  let dateElement = document.querySelector("#date");
 
   cityElement.innerHTML = response.data.name;
   tempElement.innerHTML = Math.round(response.data.main.temp);
