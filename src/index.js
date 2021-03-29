@@ -128,6 +128,9 @@ function findPosition(position) {
   let geoUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
 
   axios.get(geoUrl).then(showCurrentWeather);
+
+  geoUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(geoUrl).then(displayForecast);
 }
 
 function getCurrentLoc(event) { 
