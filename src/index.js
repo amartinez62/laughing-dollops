@@ -79,7 +79,7 @@ function displayForecast(response) {
         }@2x.png"
       />
       <div class="weather-forecast-temperature">
-        <strong>
+        <strong class="max-temp">
           ${Math.round(forecast.main.temp_max)}° /
         </strong>
         ${Math.round(forecast.main.temp_min)}°
@@ -109,6 +109,8 @@ function showCurrentWeather(response) {
   let windElement = document.querySelector(".wind-speed");
   let iconElement = document.querySelector("#icon");
   let dateElement = document.querySelector("#date");
+
+  celsiusTemp = response.data.main.temp;
 
   cityElement.innerHTML = response.data.name;
   tempElement.innerHTML = Math.round(response.data.main.temp);
@@ -140,22 +142,32 @@ function getCurrentLoc(event) {
 
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let temperatureToFahrenehit = document.querySelector(".temperature");
-  let temp = temperatureToFahrenehit.innerHTML;
-  temperatureToFahrenehit.innerHTML = Math.round((temp * 9) / 5 + 32);
+  let temp = document.querySelector(".temperature");
+  let forecastTempElement = document.querySelector(".max-temp");
+
+  tempCelsius.classList.remove("active");
+  tempFahrenheit.classList.add("active");
+
+  let temperatureToFahrenehit = (celsiusTemp * 9) / 5 + 32;
+  temp.innerHTML = Math.round(temperatureToFahrenehit);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
-  let temperatureToCelsius = document.querySelector(".temperature");
-  let temp = temperatureToCelsius.innerHTML;
-  temperatureToCelsius.innerHTML = Math.round(((temp - 32) * 5) / 9);
+  let temp = document.querySelector(".temperature");
+
+  tempCelsius.classList.add("active");
+  tempFahrenheit.classList.remove("active");
+
+  temp.innerHTML = Math.round(celsiusTemp);
 }
 
-let tempFahrenheit = document.querySelector("#f");
+let celsiusTemp = null;
+
+let tempFahrenheit = document.querySelector("#fahrenheit-link");
 tempFahrenheit.addEventListener("click", convertToFahrenheit);
 
-let tempCelsius = document.querySelector("#c");
+let tempCelsius = document.querySelector("#celsius-link");
 tempCelsius.addEventListener("click", convertToCelsius);
 
 let buttonCurrentLocation = document.querySelector(".current-loc");
