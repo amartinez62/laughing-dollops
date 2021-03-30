@@ -79,10 +79,10 @@ function displayForecast(response) {
         }@2x.png"
       />
       <div class="weather-forecast-temperature">
-        <strong class="max-temp">
-          ${Math.round(forecast.main.temp_max)}° /
+        <strong>
+          <span class="max-temp">${Math.round(forecast.main.temp_max)}</span>° /
         </strong>
-        ${Math.round(forecast.main.temp_min)}°
+        <span class="min-temp">${Math.round(forecast.main.temp_min)}</span>°
       </div>
     </div>
   `
@@ -143,13 +143,29 @@ function getCurrentLoc(event) {
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temp = document.querySelector(".temperature");
-  let forecastTempElement = document.querySelector(".max-temp");
 
   tempCelsius.classList.remove("active");
   tempFahrenheit.classList.add("active");
 
   let temperatureToFahrenehit = (celsiusTemp * 9) / 5 + 32;
   temp.innerHTML = Math.round(temperatureToFahrenehit);
+
+  let forecastMax = document.querySelectorAll(".max-temp");
+  forecastMax.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+ 
+  
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  let forecastMin = document.querySelectorAll(".min-temp");
+  forecastMin.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  tempCelsius.addEventListener("click", convertToCelsius);
+  tempFahrenheit.removeEventListener("click", convertToFahrenheit);
 }
 
 function convertToCelsius(event) {
@@ -160,6 +176,21 @@ function convertToCelsius(event) {
   tempFahrenheit.classList.remove("active");
 
   temp.innerHTML = Math.round(celsiusTemp);
+
+  let forecastMax = document.querySelectorAll(".max-temp");
+  forecastMax.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  let forecastMin = document.querySelectorAll(".min-temp");
+  forecastMin.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  tempCelsius.removeEventListener("click", convertToCelsius);
+  tempFahrenheit.addEventListener("click", convertToFahrenheit);
 }
 
 let celsiusTemp = null;
